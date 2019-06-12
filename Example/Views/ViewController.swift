@@ -61,5 +61,9 @@ extension ViewController: TatsiPickerViewControllerDelegate {
         pickerViewController.dismiss(animated: true, completion: nil)
         print("Assets \(assets)")
     }
+
+    func pickerViewController(_ pickerViewController: TatsiPickerViewController, viewControllerForPreviewing asset: PHAsset) -> UIViewController? {
+        return nil
+    }
     
 }

@@ -18,6 +18,8 @@ protocol PickerViewController {
     func finishPicking(with assets: [PHAsset])
     
     func cancelPicking()
+
+    func viewControllerForPreviewing(asset: PHAsset) -> UIViewController?
     
 }
 
@@ -47,6 +49,13 @@ extension PickerViewController where Self: UIViewController {
             return
         }
         self.delegate?.pickerViewControllerDidCancel(viewController)
+    }
+
+    func viewControllerForPreviewing(asset: PHAsset) -> UIViewController? {
+        guard let viewController = self.pickerViewController else {
+            return nil
+        }
+        return self.delegate?.pickerViewController(viewController, viewControllerForPreviewing: asset)
     }
     
 }

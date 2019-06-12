@@ -131,6 +131,8 @@ final internal class AssetsGridViewController: UICollectionViewController, Picke
         self.navigationItem.rightBarButtonItem = self.doneButton
         
         NotificationCenter.default.addObserver(self, selector: #selector(AssetsGridViewController.applicationDidBecomeActive(_:)), name: UIApplication.didBecomeActiveNotification, object: nil)
+
+        registerForPreviewing(with: self, sourceView: collectionView)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -546,4 +548,24 @@ extension AssetsGridViewController: UIImagePickerControllerDelegate, UINavigatio
         }
     }
     
+}
+
+// MARK: - UIViewControllerPreviewingDelegate
+
+extension AssetsGridViewController: UIViewControllerPreviewingDelegate {
+
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let indexPath = collectionView.indexPathForItem(at: location),
+            let cell = collectionView.cellForItem(at: indexPath),
+            let asset = asset(for: indexPath) else { return nil }
+        previewingContext.sourceRect = cell.frame
+        return viewControllerForPreviewing(asset: asset)
+    }
+
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        let location = CGPoint(x: previewingContext.sourceRect.midX, y: previewingContext.sourceRect.midY)
+        guard let indexPath = collectionView.indexPathForItem(at: location),
+            let asset = asset(for: indexPath) else { return }
+        finishPicking(with: [asset])
+    }
 }

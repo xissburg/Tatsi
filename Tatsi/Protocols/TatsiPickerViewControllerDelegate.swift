@@ -37,6 +37,10 @@ public protocol TatsiPickerViewControllerDelegate: class {
     /// - Parameter pickerViewController: The picker view controller the done button will be placed in.
     /// - Returns: The done button that should be used inside the picker view controller.
     func doneBarButtonItem(for pickerViewController: TatsiPickerViewController) -> UIBarButtonItem?
+
+    /// Asks the delegate for a view controller to display a preview of a photo/video on force touch.
+    func pickerViewController(_ pickerViewController: TatsiPickerViewController, viewControllerForPreviewing asset: PHAsset) -> UIViewController?
+
 }
 
 extension TatsiPickerViewControllerDelegate {

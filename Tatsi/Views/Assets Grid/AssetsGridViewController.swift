@@ -19,7 +19,7 @@ final internal class AssetsGridViewController: UICollectionViewController, Picke
                 return
             }
             self.selectedAssets = []
-            self.assets = []
+            self.assets = nil
             self.collectionView?.reloadData()
             
             self.configureForNewAlbum()
@@ -72,7 +72,7 @@ final internal class AssetsGridViewController: UICollectionViewController, Picke
     /// When the album view is animating in. Only used when the config is set to "SingleViewMode".
     fileprivate var animatingAlbumView = false
     
-    fileprivate var assets: [PHAsset]? {
+    fileprivate var assets: PHFetchResult<PHAsset>? {
         didSet {
             guard let collectionView = self.collectionView else {
                 return
@@ -276,23 +276,12 @@ final internal class AssetsGridViewController: UICollectionViewController, Picke
         if !self.showCameraButton {
             self.emptyView = AlbumEmptyView(state: .loading)
         }
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            guard let strongSelf = self else {
-                return
-            }
-            let result = PHAsset.fetchAssets(in: strongSelf.album, options: fetchOptions)
-            var allAssets = [PHAsset]()
-            result.enumerateObjects({ (asset, _, _) in
-                allAssets.append(asset)
-            })
-            DispatchQueue.main.async {
-                if self?.config?.invertUserLibraryOrder == true && strongSelf.album.isUserLibrary {
-                    allAssets.reverse()
-                }
-                self?.assets = allAssets
-            }
+
+        if self.config?.invertUserLibraryOrder == true && self.album.isUserLibrary {
+            fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         }
-        
+
+        assets = PHAsset.fetchAssets(in: album, options: fetchOptions)
     }
     
     // MARK: - Notifications
@@ -353,14 +342,6 @@ final internal class AssetsGridViewController: UICollectionViewController, Picke
             return nil
         }
         return assets[index]
-    }
-    
-    fileprivate func addAsset(_ asset: PHAsset) {
-        if self.config?.invertUserLibraryOrder == true {
-            self.assets?.insert(asset, at: 0)
-        } else {
-            self.assets?.append(asset)
-        }
     }
     
     fileprivate func selectAsset(_ asset: PHAsset) {
@@ -501,13 +482,13 @@ extension AssetsGridViewController: UIImagePickerControllerDelegate, UINavigatio
             return
         }
         self.createAsset(from: image) { [weak self] (asset, error) in
-            if let asset = asset {
-                self?.addAsset(asset)
-                self?.selectAsset(asset)
-            } else if let error = error {
+            if let error = error {
                 print("Error saving photo \(error)")
             } else {
                 self?.startFetchingAssets()
+                if let asset = asset {
+                    self?.selectAsset(asset)
+                }
             }
         }
         picker.dismiss(animated: true, completion: nil)
@@ -516,14 +497,13 @@ extension AssetsGridViewController: UIImagePickerControllerDelegate, UINavigatio
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         //Save the image
         self.createAsset(from: image) { [weak self] (asset, error) in
-            if let asset = asset {
-                
-                self?.addAsset(asset)
-                self?.selectAsset(asset)
-            } else if let error = error {
+            if let error = error {
                 print("Error saving photo \(error)")
             } else {
                 self?.startFetchingAssets()
+                if let asset = asset {
+                    self?.selectAsset(asset)
+                }
             }
         }
         picker.dismiss(animated: true, completion: nil)

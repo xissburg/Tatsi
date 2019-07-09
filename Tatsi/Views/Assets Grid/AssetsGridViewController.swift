@@ -77,19 +77,16 @@ final internal class AssetsGridViewController: UICollectionViewController, Picke
             guard let collectionView = self.collectionView else {
                 return
             }
-            DispatchQueue.main.async {
-                UIView.performWithoutAnimation({
-                    collectionView.reloadSections(IndexSet(integer: 0))
-                    if self.config?.invertUserLibraryOrder == false && self.userScrolled == false && self.album.assetCollectionType == .smartAlbum {
-                        self.scrollToEnd()
-                    }
-                    for selectedAsset in self.selectedAssets {
-                        self.selectAsset(selectedAsset)
-                    }
-                    self.emptyView = collectionView.numberOfItems(inSection: 0) <= 0  ? AlbumEmptyView() : nil
-                })
-                
-            }
+            UIView.performWithoutAnimation({
+                collectionView.reloadSections(IndexSet(integer: 0))
+                if self.config?.invertUserLibraryOrder == false && self.userScrolled == false && self.album.assetCollectionType == .smartAlbum {
+                    self.scrollToEnd()
+                }
+                for selectedAsset in self.selectedAssets {
+                    self.selectAsset(selectedAsset)
+                }
+                self.emptyView = collectionView.numberOfItems(inSection: 0) <= 0  ? AlbumEmptyView() : nil
+            })
         }
     }
     
@@ -281,7 +278,14 @@ final internal class AssetsGridViewController: UICollectionViewController, Picke
             fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         }
 
-        assets = PHAsset.fetchAssets(in: album, options: fetchOptions)
+        let album = self.album
+
+        DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+            let assets = PHAsset.fetchAssets(in: album, options: fetchOptions)
+            DispatchQueue.main.async {
+                self?.assets = assets
+            }
+        }
     }
     
     // MARK: - Notifications

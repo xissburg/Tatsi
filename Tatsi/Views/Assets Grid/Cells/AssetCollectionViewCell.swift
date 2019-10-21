@@ -151,13 +151,11 @@ final internal class AssetCollectionViewCell: UICollectionViewCell {
 
         currentRequest = imageManager.requestImage(for: asset, targetSize: targetSize, contentMode: PHImageContentMode.aspectFill, options: requestOptions) { [weak self] (image, _) in
             DispatchQueue.main.async {
-                autoreleasepool {
-                    guard let image = image, self?.asset?.localIdentifier == assetIdentifier else {
-                        return
-                    }
-                    self?.imageView.contentMode = UIView.ContentMode.scaleAspectFill
-                    self?.imageView.image = image
+                guard let image = image, self?.asset?.localIdentifier == assetIdentifier else {
+                    return
                 }
+                self?.imageView.contentMode = UIView.ContentMode.scaleAspectFill
+                self?.imageView.image = image
             }
         }
     }

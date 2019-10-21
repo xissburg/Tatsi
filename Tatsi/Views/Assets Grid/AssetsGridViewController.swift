@@ -129,6 +129,12 @@ final internal class AssetsGridViewController: UICollectionViewController, Picke
         
         NotificationCenter.default.addObserver(self, selector: #selector(AssetsGridViewController.applicationDidBecomeActive(_:)), name: UIApplication.didBecomeActiveNotification, object: nil)
 
+        if #available(iOS 13.0, *) {
+            // needed because iOS 13 does not call traitCollectionDidChange after being added to the view hierarchy like older iOS versions
+            self.updateCollectionViewLayout()
+        }
+
+        // `UIViewControllerPreviewing` support.
         registerForPreviewing(with: self, sourceView: collectionView)
     }
     

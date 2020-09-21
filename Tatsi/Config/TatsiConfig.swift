@@ -8,6 +8,7 @@
 
 import Foundation
 import Photos
+import UIKit
 
 /// A struct that defines all the customizable properties on a picker
 public struct TatsiConfig {
@@ -31,7 +32,10 @@ public struct TatsiConfig {
         /// A view that shows the photos of a specific album.
         case album(PHAssetCollection)
     }
-    
+
+    /// The colors to apply to the interface elements.
+    public var colors: TatsiColors = TatsiDefaultColors()
+
     /// All media types that the picker displays. Defaults to images and videos.
     public var supportedMediaTypes: Set<PHAssetMediaType> = [PHAssetMediaType.image, PHAssetMediaType.video]
     
@@ -70,10 +74,20 @@ public struct TatsiConfig {
     
     /// If the order of photos in the user library (all photos/camera roll) should be inverted.
     public var invertUserLibraryOrder = false
-    
+
     /// If the delegate should finish immediately when maxNumberOfSelections is set to 1 and the user selects a photo
     public var finishImmediatelyWithMaximumOfOne = true
+
+    /// The statusbar style to be used on the screens
+    public var preferredStatusBarStyle: UIStatusBarStyle = .default
     
+    /// Set a table name to load the localizable strings used in Tatsi from a specified localizable strings file.
+    public var localizableStringsTableName: String? {
+        didSet {
+            LocalizableStrings.tableName = localizableStringsTableName
+        }
+    }
+
     // MARK: - Internal features
     
     /// All the PHAssetCollectionSubtypes that should not be shown to the user. Based on the current config

@@ -45,6 +45,7 @@
 		0CBB287A1F12BEA600254034 /* AssetTypeIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBB28791F12BEA600254034 /* AssetTypeIconView.swift */; };
 		0CBB287E1F1389A800254034 /* TypeIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBB287D1F1389A800254034 /* TypeIcons.swift */; };
 		0CBB28801F138B4100254034 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBB287F1F138B4100254034 /* LocalizableStrings.swift */; };
+		50DE1942236327580031438D /* TatsiColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DE1941236327580031438D /* TatsiColors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +128,7 @@
 		0CBB28791F12BEA600254034 /* AssetTypeIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetTypeIconView.swift; sourceTree = "<group>"; };
 		0CBB287D1F1389A800254034 /* TypeIcons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeIcons.swift; sourceTree = "<group>"; };
 		0CBB287F1F138B4100254034 /* LocalizableStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
+		50DE1941236327580031438D /* TatsiColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TatsiColors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				0C5B617C1F0E32C0005A25CE /* TatsiConfig.swift */,
+				50DE1941236327580031438D /* TatsiColors.swift */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -416,7 +419,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = awkward;
 				TargetAttributes = {
 					0C19D8921F14D3B80087032A = {
@@ -427,21 +430,21 @@
 					};
 					0C5B61421F0D2293005A25CE = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = UNYTM457A3;
-						LastSwiftMigration = 0900;
+						DevelopmentTeam = N4KR5KV52L;
+						LastSwiftMigration = 1110;
 						ProvisioningStyle = Automatic;
 					};
 					0C5B615C1F0D231D005A25CE = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = N4KR5KV52L;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1110;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
 			buildConfigurationList = 0C5B613E1F0D2293005A25CE /* Build configuration list for PBXProject "Tatsi" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				English,
@@ -534,6 +537,7 @@
 				0CBB287E1F1389A800254034 /* TypeIcons.swift in Sources */,
 				0CACBE891F13B21C00CD1B32 /* CameraIconView.swift in Sources */,
 				0C5B618C1F0E3924005A25CE /* AlbumImageView.swift in Sources */,
+				50DE1942236327580031438D /* TatsiColors.swift in Sources */,
 				0CBB28781F12B22D00254034 /* AssetMetadataView.swift in Sources */,
 				0C19D88E1F14C3220087032A /* AlbumEmptyView.swift in Sources */,
 				0C5B61891F0E36B4005A25CE /* PickerViewController.swift in Sources */,
@@ -612,6 +616,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -670,6 +675,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -728,7 +734,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "co.awkward.tatsi-example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -743,7 +749,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "co.awkward.tatsi-example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -766,7 +772,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -791,7 +797,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = co.awkward.tatsi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";

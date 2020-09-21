@@ -16,13 +16,20 @@ final public class TatsiPickerViewController: UINavigationController {
     public let config: TatsiConfig
     
     public weak var pickerDelegate: TatsiPickerViewControllerDelegate?
+
+    override public var preferredStatusBarStyle: UIStatusBarStyle {
+        return self.config.preferredStatusBarStyle
+    }
     
     // MARK: - Initializers
     
     public init(config: TatsiConfig = TatsiConfig.default) {
         self.config = config
         super.init(nibName: nil, bundle: nil)
-        
+
+        navigationBar.barTintColor = config.colors.background
+        navigationBar.tintColor = config.colors.link
+
         self.setIntialViewController()
     }
     
@@ -55,7 +62,9 @@ final public class TatsiPickerViewController: UINavigationController {
         case .denied, .notDetermined, .restricted:
             // Not authorized, show the view to give access
             self.viewControllers = [AuthorizationViewController()]
-        }
+        @unknown default:
+          assertionFailure("Unknown authorization status detected.")
+      }
     }
     
     private func showAlbumViewController(with collection: PHAssetCollection?) {

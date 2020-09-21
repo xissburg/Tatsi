@@ -33,13 +33,14 @@ final internal class AlbumTableViewCell: UITableViewCell {
         label.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.subheadline)
         label.lineBreakMode = .byTruncatingTail
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = TatsiConfig.default.colors.label
         return label
     }()
     
     lazy private  var countLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.subheadline)
-        label.textColor = UIColor.gray
+        label.textColor = TatsiConfig.default.colors.secondaryLabel
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -55,6 +56,14 @@ final internal class AlbumTableViewCell: UITableViewCell {
     var album: PHAssetCollection? {
         didSet {
             self.albumChanged = self.album != oldValue
+        }
+    }
+
+    var colors: TatsiColors? {
+        didSet {
+            self.backgroundColor = self.colors?.background ?? TatsiConfig.default.colors.background
+            self.titleLabel.textColor = self.colors?.label ?? TatsiConfig.default.colors.label
+            self.countLabel.textColor = self.colors?.secondaryLabel ?? TatsiConfig.default.colors.secondaryLabel
         }
     }
     

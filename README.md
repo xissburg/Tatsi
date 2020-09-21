@@ -37,6 +37,8 @@ Hi, we're <a href="https://awkward.co/" target="_blank">Awkward</a>. We created 
 - Accessibility (voice-over and switch control) is supported
 - Easily Localizable
 - Support for smart albums, user created albums and iCloud shared albums
+- Support for dark mode by default
+- Customization using the `TatsiColors` protocol
 
 ## Installation
 
@@ -62,6 +64,13 @@ Hi, we're <a href="https://awkward.co/" target="_blank">Awkward</a>. We created 
 3. Add Tatsi to your project's Embedded Binaries and to the Carthage build phase
 4. Add `NSPhotoLibraryUsageDescription` to your Info.plist with a proper description.
 5. (Optional) if you want to use the camera option. You will also need to add `NSCameraUsageDescription` to your Info.plist
+
+### Cocoapods
+
+1. Add `pod 'Tatsi'` to your `Podfile`
+2. Run `pod install`
+3. Add `NSPhotoLibraryUsageDescription` to your Info.plist with a proper description.
+4. (Optional) if you want to use the camera option. You will also need to add `NSCameraUsageDescription` to your Info.plist
 
 ## Usage
 

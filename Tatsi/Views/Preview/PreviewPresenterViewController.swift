@@ -18,7 +18,7 @@ class PreviewPresenterViewController: UIViewController {
     }()
 
     var contentInset = UIEdgeInsets(top: 44, left: 8, bottom: 44, right: 8)
-    var centerOffset = CGPoint(x: 0, y: -52)
+    var centerOffset = CGPoint.zero
 
     weak var currentViewController: UIViewController?
 
@@ -40,6 +40,7 @@ class PreviewPresenterViewController: UIViewController {
 
         if let currentVC = currentViewController {
             addChild(currentVC)
+            currentVC.view.translatesAutoresizingMaskIntoConstraints = false
             contentView.addSubview(currentVC.view)
             currentVC.didMove(toParent: self)
 

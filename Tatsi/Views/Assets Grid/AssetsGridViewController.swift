@@ -105,7 +105,10 @@ final internal class AssetsGridViewController: UICollectionViewController, Picke
         buttonitem.tintColor = self.config?.colors.link ?? TatsiConfig.default.colors.link
         return buttonitem
     }()
-    
+
+    fileprivate var previewTransitioning: PreviewTransitioningDelegate?
+    fileprivate weak var previewPresenterViewController: PreviewPresenterViewController?
+
     // MARK: - Initializers
     
     init(album: PHAssetCollection) {
@@ -142,8 +145,13 @@ final internal class AssetsGridViewController: UICollectionViewController, Picke
             self.updateCollectionViewLayout()
         }
 
-        // `UIViewControllerPreviewing` support.
-        registerForPreviewing(with: self, sourceView: collectionView)
+        // Preview using force touch if available, or else using long press.
+        if traitCollection.forceTouchCapability == .available {
+            registerForPreviewing(with: self, sourceView: collectionView)
+        } else {
+            let longPress = UILongPressGestureRecognizer(target: self, action: #selector(didLongPressCollectionView(_:)))
+            collectionView.addGestureRecognizer(longPress)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -571,5 +579,37 @@ extension AssetsGridViewController: UIViewControllerPreviewingDelegate {
         guard let indexPath = collectionView.indexPathForItem(at: location),
             let asset = asset(for: indexPath) else { return }
         finishPicking(with: [asset])
+    }
+}
+
+// MARK: - Long press preview
+
+extension AssetsGridViewController {
+
+    @objc func didLongPressCollectionView(_ gesture: UILongPressGestureRecognizer) {
+        switch gesture.state {
+        case .began:
+            let location = gesture.location(in: collectionView)
+            guard let indexPath = collectionView.indexPathForItem(at: location) else { return }
+            guard let asset = asset(for: indexPath) else { return }
+            guard let previewViewController = viewControllerForPreviewing(asset: asset) else { return }
+
+            let presenter = PreviewPresenterViewController(nibName: nil, bundle: nil)
+            presenter.contentView.layer.cornerRadius = 20
+            presenter.contentInset = UIEdgeInsets(top: 88, left: 24, bottom: 88, right: 24)
+            presenter.present(previewViewController)
+            previewTransitioning = PreviewTransitioningDelegate(contentView: presenter.contentView)
+            presenter.modalPresentationStyle = .custom
+            presenter.transitioningDelegate = previewTransitioning
+            present(presenter, animated: true, completion: nil)
+
+            previewPresenterViewController = presenter
+        case .ended:
+            previewPresenterViewController?.dismiss(animated: true, completion: nil)
+            previewPresenterViewController = nil
+            previewTransitioning = nil
+        default:
+            break
+        }
     }
 }

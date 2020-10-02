@@ -45,6 +45,11 @@
 		0CBB287A1F12BEA600254034 /* AssetTypeIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBB28791F12BEA600254034 /* AssetTypeIconView.swift */; };
 		0CBB287E1F1389A800254034 /* TypeIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBB287D1F1389A800254034 /* TypeIcons.swift */; };
 		0CBB28801F138B4100254034 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBB287F1F138B4100254034 /* LocalizableStrings.swift */; };
+		1B0AD98E2527A622002E4C8F /* PreviewPresenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0AD98D2527A622002E4C8F /* PreviewPresenterViewController.swift */; };
+		1B0AD9902527A7D7002E4C8F /* PreviewPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0AD98F2527A7D7002E4C8F /* PreviewPresentationController.swift */; };
+		1B0AD9922527A7F1002E4C8F /* PreviewPresentationTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0AD9912527A7F1002E4C8F /* PreviewPresentationTransitionAnimator.swift */; };
+		1B0AD9942527A804002E4C8F /* PreviewDismissTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0AD9932527A804002E4C8F /* PreviewDismissTransitionAnimator.swift */; };
+		1B0AD9962527A81B002E4C8F /* PreviewTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0AD9952527A81B002E4C8F /* PreviewTransitioningDelegate.swift */; };
 		50DE1942236327580031438D /* TatsiColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DE1941236327580031438D /* TatsiColors.swift */; };
 /* End PBXBuildFile section */
 
@@ -128,6 +133,11 @@
 		0CBB28791F12BEA600254034 /* AssetTypeIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetTypeIconView.swift; sourceTree = "<group>"; };
 		0CBB287D1F1389A800254034 /* TypeIcons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeIcons.swift; sourceTree = "<group>"; };
 		0CBB287F1F138B4100254034 /* LocalizableStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
+		1B0AD98D2527A622002E4C8F /* PreviewPresenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewPresenterViewController.swift; sourceTree = "<group>"; };
+		1B0AD98F2527A7D7002E4C8F /* PreviewPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewPresentationController.swift; sourceTree = "<group>"; };
+		1B0AD9912527A7F1002E4C8F /* PreviewPresentationTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewPresentationTransitionAnimator.swift; sourceTree = "<group>"; };
+		1B0AD9932527A804002E4C8F /* PreviewDismissTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewDismissTransitionAnimator.swift; sourceTree = "<group>"; };
+		1B0AD9952527A81B002E4C8F /* PreviewTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewTransitioningDelegate.swift; sourceTree = "<group>"; };
 		50DE1941236327580031438D /* TatsiColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TatsiColors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -250,6 +260,7 @@
 				0CBB28731F0FE37400254034 /* Authorization */,
 				0C5B618E1F0E393D005A25CE /* Albums */,
 				0C5B61801F0E3634005A25CE /* Assets Grid */,
+				1B0AD98C2527A60E002E4C8F /* Preview */,
 				0C5B617A1F0E302C005A25CE /* TatsiPickerViewController.swift */,
 			);
 			path = Views;
@@ -342,6 +353,18 @@
 			path = UIElements;
 			sourceTree = "<group>";
 		};
+		1B0AD98C2527A60E002E4C8F /* Preview */ = {
+			isa = PBXGroup;
+			children = (
+				1B0AD98D2527A622002E4C8F /* PreviewPresenterViewController.swift */,
+				1B0AD98F2527A7D7002E4C8F /* PreviewPresentationController.swift */,
+				1B0AD9912527A7F1002E4C8F /* PreviewPresentationTransitionAnimator.swift */,
+				1B0AD9932527A804002E4C8F /* PreviewDismissTransitionAnimator.swift */,
+				1B0AD9952527A81B002E4C8F /* PreviewTransitioningDelegate.swift */,
+			);
+			path = Preview;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -430,7 +453,7 @@
 					};
 					0C5B61421F0D2293005A25CE = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = N4KR5KV52L;
+						DevelopmentTeam = UNYTM457A3;
 						LastSwiftMigration = 1110;
 						ProvisioningStyle = Automatic;
 					};
@@ -525,6 +548,7 @@
 				0CBB28751F0FE38D00254034 /* AuthorizationViewController.swift in Sources */,
 				0C5B61951F0E3E13005A25CE /* PHAssetCollectionExtensions.swift in Sources */,
 				0C5B618D1F0E3924005A25CE /* SelectionIconView.swift in Sources */,
+				1B0AD9902527A7D7002E4C8F /* PreviewPresentationController.swift in Sources */,
 				0C5B61931F0E39A6005A25CE /* AlbumTableViewCell.swift in Sources */,
 				0C76843A1FDEC32200514164 /* AlbumTitleView.swift in Sources */,
 				0C5B61B31F0FC82D005A25CE /* AlbumsTableHeaderView.swift in Sources */,
@@ -533,13 +557,17 @@
 				0C5B617F1F0E3521005A25CE /* TatsiPickerViewControllerDelegate.swift in Sources */,
 				0C5B61851F0E3681005A25CE /* CameraCollectionViewCell.swift in Sources */,
 				0C5B61841F0E3681005A25CE /* AssetCollectionViewCell.swift in Sources */,
+				1B0AD9942527A804002E4C8F /* PreviewDismissTransitionAnimator.swift in Sources */,
 				0C7684491FDED59F00514164 /* ChangeAlbumArrowView.swift in Sources */,
+				1B0AD9962527A81B002E4C8F /* PreviewTransitioningDelegate.swift in Sources */,
 				0CBB287E1F1389A800254034 /* TypeIcons.swift in Sources */,
 				0CACBE891F13B21C00CD1B32 /* CameraIconView.swift in Sources */,
+				1B0AD98E2527A622002E4C8F /* PreviewPresenterViewController.swift in Sources */,
 				0C5B618C1F0E3924005A25CE /* AlbumImageView.swift in Sources */,
 				50DE1942236327580031438D /* TatsiColors.swift in Sources */,
 				0CBB28781F12B22D00254034 /* AssetMetadataView.swift in Sources */,
 				0C19D88E1F14C3220087032A /* AlbumEmptyView.swift in Sources */,
+				1B0AD9922527A7F1002E4C8F /* PreviewPresentationTransitionAnimator.swift in Sources */,
 				0C5B61891F0E36B4005A25CE /* PickerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
